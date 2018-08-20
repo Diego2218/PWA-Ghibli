@@ -50,14 +50,14 @@ function conexion(){
             xhttp.open("GET", url, true);
             xhttp.send();
           }
-    else {
-      console.log('caches');
+  else {
     if ('caches' in window) {
-    caches.match(url).then(function(response) {
-      if (response) {
-        response.json().then(function updateFromCache(json) {
-          cargarDatos(json);
-        });
+      caches.match(url).then(function(response) {
+        if (response) {
+          response.json().then(function updateFromCache(json) {
+            cargarDatos(json);
+          });
+        }
       }
     }
   }
