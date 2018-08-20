@@ -13,14 +13,14 @@ var urlsToCache = [
     ];
 
 //Install stage sets up the cache-array to configure pre-cache content
-self.addEventListener('install', function(evt) {
+/*self.addEventListener('install', function(evt) {
   console.log('[PWA Builder] The service worker is being installed.');
   evt.waitUntil(precache().then(function() {
     console.log('[PWA Builder] Skip waiting on install');
     return self.skipWaiting();
   }));
-});
-/*self.addEventListener('install', function(e) {
+});*/
+self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Installing sw');
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
@@ -28,15 +28,15 @@ self.addEventListener('install', function(evt) {
       return cache.addAll(urlsToCache);
     })
   );
-});*/
+});
 
 
 //allow sw to control of current page
-self.addEventListener('activate', function(event) {
+/*self.addEventListener('activate', function(event) {
   console.log('[PWA Builder] Claiming clients for current page');
   return self.clients.claim();
-});
-/*self.addEventListener('activate', function(e) {
+});*/
+self.addEventListener('activate', function(e) {
   console.log('[ServiceWorker] Activate');
   e.waitUntil(
     caches.keys().then(function(keyList) {
@@ -70,9 +70,9 @@ self.addEventListener('fetch', function(e) {
       })
     );
   }
-});*/
+});
 
-self.addEventListener('fetch', function(evt) {
+/*self.addEventListener('fetch', function(evt) {
   console.log('[PWA Builder] The service worker is serving the asset.'+ evt.request.url);
   evt.respondWith(fromCache(evt.request).catch(fromServer(evt.request)));
   evt.waitUntil(update(evt.request));
@@ -108,4 +108,4 @@ function update(request) {
 function fromServer(request){
   //this is the fallback if it is not in the cache to go to the server and get it
   return fetch(request).then(function(response){ return response});
-}
+}*/
