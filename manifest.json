@@ -1,0 +1,16 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "My PWA",
+    "scope": "/PWA-Ghibli/",
+    "display": "browser",
+    "start_url": "https://diego2218.github.io/PWA-Ghibli/",
+    "short_name": "PWA",
+    "theme_color": "transparent",
+    "description": "First Progressive Web App",
+    "orientation": "any",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": []
+}

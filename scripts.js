@@ -36,6 +36,15 @@ request.onload = function () {
     errorMessage.textContent = `It's not working! :( `;
     app.appendChild(errorMessage);
   }
+
+  if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('./pwabuilder-sw.js')
+            .then(function(registration) {
+                console.log('Service Worker Registered', registration.scope);
+            });
+    }
+
 }
 
 request.send();
