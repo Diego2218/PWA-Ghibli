@@ -53,11 +53,11 @@ function conexion(){
     else {
       console.log('caches');
     if ('caches' in window) {
-
     caches.match(url).then(function(response) {
-      console.log(JSON.parse(response));
-      cargarDatos(JSON.parse(response));
-          });
+      if (response) {
+        response.json().then(function updateFromCache(json) {
+          cargarDatos(json);
+        });
       }
   }
 }
