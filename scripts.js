@@ -9,22 +9,21 @@ container.setAttribute('class', 'container');
 app.appendChild(logo);
 app.appendChild(container);
 
-
+var request = new XMLHttpRequest();
 var url = 'https://ghibliapi.herokuapp.com/films';
 
 request.onload = function () {
 
 if(navigator.onLine){
-  var request = new XMLHttpRequest();
   request.open('GET', url, true);
   var data = JSON.parse(this.response);
-  if (request.status >= 200 && request.status < 400){
-  cargarDatos(data);
-} else {
-  const errorMessage = document.createElement('marquee');
-  errorMessage.textContent = `It's not working! :( `;
-  app.appendChild(errorMessage);
-}
+    if (request.status >= 200 && request.status < 400){
+      cargarDatos(data);
+    } else {
+      const errorMessage = document.createElement('marquee');
+      errorMessage.textContent = `It's not working! :( `;
+        app.appendChild(errorMessage);
+      }
 } else {
   if ('caches' in window) {
   caches.match(url).then(function(response) {
