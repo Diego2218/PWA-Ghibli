@@ -8,36 +8,13 @@ container.setAttribute('class', 'container');
 
 app.appendChild(logo);
 app.appendChild(container);
-
-var request = new XMLHttpRequest();
 var url = 'https://ghibliapi.herokuapp.com/films';
 
-request.onload = function () {
 
-if(navigator.onLine){
-  request.open('GET', url, true);
-  request.send();
 
-  var data = JSON.parse(this.response);
-  console.log(data);
-    if (request.status >= 200 && request.status < 400){
-      cargarDatos(data);
-    } else {
-      const errorMessage = document.createElement('marquee');
-      errorMessage.textContent = `It's not working! :( `;
-        app.appendChild(errorMessage);
-      }
-} else {
-  if ('caches' in window) {
-  caches.match(url).then(function(response) {
-            if (response) {
-                console.log(response);
-                cargarDatos(response.json());
-            }
-        });
-    }
-}
-  /*if (request.status >= 200 && request.status < 400) {
+/*request.onload = function () {
+
+  if (request.status >= 200 && request.status < 400) {
     data.forEach(movie => {
 
       const card = document.createElement('div');
@@ -58,8 +35,31 @@ if(navigator.onLine){
     const errorMessage = document.createElement('marquee');
     errorMessage.textContent = `It's not working! :( `;
     app.appendChild(errorMessage);
-  }*/
+  }
 
+}*/
+
+function conexion(){
+  if(navigator.onLine){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cargarDatos(JSON.parse(this.response));
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+          }
+    else {
+    if ('caches' in window) {
+    caches.match(url).then(function(response) {
+              if (response) {
+                  console.log(response);
+                  cargarDatos(response.json());
+              }
+          });
+      }
+  }
 }
 
 function cargarDatos(response){
