@@ -16,6 +16,8 @@ request.onload = function () {
 
 if(navigator.onLine){
   request.open('GET', url, true);
+  request.send();
+  
   var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400){
       cargarDatos(data);
@@ -77,4 +79,4 @@ function cargarDatos(response){
   });
 }
 
-request.send();
+//request.send();
