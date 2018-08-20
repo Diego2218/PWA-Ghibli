@@ -51,10 +51,12 @@ function conexion(){
             xhttp.send();
           }
     else {
-    if ('caches' in window) {
       console.log('caches');
+    if ('caches' in window) {
+
     caches.match(url).then(function(response) {
-      cargarDatos(response.json());
+      console.log(JSON.parse(response));
+      cargarDatos(JSON.parse(response));
           });
       }
   }
