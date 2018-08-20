@@ -17,7 +17,7 @@ request.onload = function () {
 if(navigator.onLine){
   request.open('GET', url, true);
   request.send();
-  
+
   var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400){
       cargarDatos(data);
@@ -61,6 +61,7 @@ if(navigator.onLine){
 }
 
 function cargarDatos(response){
+  console.log(response);
   response.forEach(movie => {
 
     const card = document.createElement('div');
