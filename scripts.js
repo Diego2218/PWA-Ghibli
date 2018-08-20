@@ -26,6 +26,7 @@ function conexion(){
       caches.match(url).then(function(response) {
         if (response) {
           response.json().then(function updateFromCache(json) {
+            console.log(json);
             cargarDatos(json);
           });
         }
@@ -35,7 +36,6 @@ function conexion(){
 }
 
 function cargarDatos(response){
-  console.log(response);
   response.forEach(movie => {
 
     const card = document.createElement('div');
