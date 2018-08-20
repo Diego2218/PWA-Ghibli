@@ -20,7 +20,7 @@ request.onload = function () {
   if ('caches' in window) {
   caches.match(url).then(function(response) {
             if (response) {
-                response.json().then(function updateFromCache(json) {
+                response.json().then(function updateFromCache(data) {
                   json.forEach(movie => {
 
                     const card = document.createElement('div');
