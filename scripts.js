@@ -19,6 +19,7 @@ if(navigator.onLine){
   request.send();
 
   var data = JSON.parse(this.response);
+  console.log(data);
     if (request.status >= 200 && request.status < 400){
       cargarDatos(data);
     } else {
@@ -30,6 +31,7 @@ if(navigator.onLine){
   if ('caches' in window) {
   caches.match(url).then(function(response) {
             if (response) {
+                console.log(response);
                 cargarDatos(response.json());
             }
         });
