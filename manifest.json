@@ -4,7 +4,7 @@
     "name": "My PWA",
     "scope": "/PWA-Ghibli/",
     "display": "browser",
-    "start_url": "https://diego2218.github.io/PWA-Ghibli/",
+    "start_url": "./index.html",
     "short_name": "PWA",
     "theme_color": "transparent",
     "description": "First Progressive Web App",
