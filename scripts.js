@@ -25,8 +25,7 @@ function conexion(){
     if ('caches' in window) {
       caches.match(url).then(function(response) {
         if (response) {
-          response.json().then(function updateFromCache(json) {
-            console.log(json);
+          response.json().then(function updateFromCache(json) {            
             cargarDatos(json);
           });
         }

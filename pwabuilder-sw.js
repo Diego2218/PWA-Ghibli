@@ -6,6 +6,7 @@ var dataCacheName = 'ghilbi-data-v1';
 
 var urlsToCache = [
       /* array of files to precache for the app */
+      './',
       './index.html',
       './scripts.js',
       './style.css',
