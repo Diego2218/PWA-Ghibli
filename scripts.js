@@ -54,9 +54,7 @@ function conexion(){
     if ('caches' in window) {
       console.log('caches');
     caches.match(url).then(function(response) {
-              if (response) {
-                  cargarDatos(response.json());
-              }
+      cargarDatos(response.json());
           });
       }
   }
