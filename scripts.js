@@ -9,40 +9,54 @@ container.setAttribute('class', 'container');
 app.appendChild(logo);
 app.appendChild(container);
 
-var request = new XMLHttpRequest();
+
 var url = 'https://ghibliapi.herokuapp.com/films';
-request.open('GET', url, true);
+
 request.onload = function () {
 
-  // Begin accessing JSON data here
+if(navigator.onLine){
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
   var data = JSON.parse(this.response);
-
+  if (request.status >= 200 && request.status < 400){
+  cargarDatos(data);
+} else {
+  const errorMessage = document.createElement('marquee');
+  errorMessage.textContent = `It's not working! :( `;
+  app.appendChild(errorMessage);
+}
+} else {
   if ('caches' in window) {
   caches.match(url).then(function(response) {
             if (response) {
-                response.json().then(function updateFromCache(json) {
-                  json.forEach(movie => {
-
-                    const card = document.createElement('div');
-                    card.setAttribute('class', 'card');
-
-                    const h1 = document.createElement('h1');
-                    h1.textContent = movie.title;
-
-                    const p = document.createElement('p');
-                    movie.description = movie.description.substring(0, 300);
-                    p.textContent = `${movie.description}...`;
-
-                    container.appendChild(card);
-                    card.appendChild(h1);
-                    card.appendChild(p);
-                  });
-                });
+                cargarDatos(response.json());
             }
         });
     }
+}
 
-  if (request.status >= 200 && request.status < 400) {
+cargarDatos(response){
+  response.forEach(movie => {
+
+    const card = document.createElement('div');
+    card.setAttribute('class', 'card');
+
+    const h1 = document.createElement('h1');
+    h1.textContent = movie.title;
+
+    const p = document.createElement('p');
+    movie.description = movie.description.substring(0, 300);
+    p.textContent = `${movie.description}...`;
+
+    container.appendChild(card);
+    card.appendChild(h1);
+    card.appendChild(p);
+  });
+}
+
+
+
+  /*if (request.status >= 200 && request.status < 400) {
     data.forEach(movie => {
 
       const card = document.createElement('div');
@@ -63,7 +77,7 @@ request.onload = function () {
     const errorMessage = document.createElement('marquee');
     errorMessage.textContent = `It's not working! :( `;
     app.appendChild(errorMessage);
-  }
+  }*/
 
 }
 
