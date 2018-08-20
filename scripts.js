@@ -58,7 +58,7 @@ if(navigator.onLine){
 
 }
 
-cargarDatos(response){
+function cargarDatos(response){
   response.forEach(movie => {
 
     const card = document.createElement('div');
