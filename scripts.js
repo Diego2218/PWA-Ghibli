@@ -52,9 +52,9 @@ function conexion(){
           }
     else {
     if ('caches' in window) {
+      console.log('caches');
     caches.match(url).then(function(response) {
               if (response) {
-                  console.log(response);
                   cargarDatos(response.json());
               }
           });
